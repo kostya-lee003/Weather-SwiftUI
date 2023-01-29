@@ -8,25 +8,23 @@
 import SwiftUI
 
 struct MainCityHeader: View {
-    @State private var showInTemperature = false
-    @State private var temperature = 111
-    @State private var weatherColor = WeatherColor.average
+    @StateObject private var viewModel = ViewModel()
     
     var body: some View {
         VStack {
             HStack {
-                Text("Stuttgart")
+                Text(viewModel.cityName)
                     .font(.title)
                     .fontWeight(.medium)
                     .foregroundColor(.white)
                 Spacer()
-                Text("31*")
+                Text(viewModel.temperature)
                     .font(.title)
                     .foregroundColor(.white)
             }
-            Toggle("Show in Farenheit", isOn: $showInTemperature)
+            Toggle("Show in Farenheit", isOn: $viewModel.showInTemperature)
                 .foregroundColor(.white)
         }
-        .listRowBackground(WeatherDataManager.getColor(from: temperature).opacity(0.75))
+        
     }
 }

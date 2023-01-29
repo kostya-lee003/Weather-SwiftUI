@@ -14,15 +14,23 @@ public enum WeatherColor: String {
 }
 
 struct ContentView: View {
-    var items = ["Hello1", "Hello2", "Hello3", "Hello4"]
-    
-    @State private var searchText = ""
+    @StateObject private var viewModel = ViewModel()
     
     var body: some View {
         NavigationView {
             List {
-                MainCityHeader()
-                ForEach(items, id: \.self) { element in
+                ZStack {
+                    MainCityHeader()
+                    NavigationLink(destination: CityDetailsView()) {
+                        EmptyView()
+                    }
+                    .buttonStyle(.plain)
+                    .frame(width: 0)
+                    .opacity(0)
+                }
+                .listRowBackground(WeatherDataManager.getColor(from: viewModel.temperature).opacity(0.75))
+                
+                ForEach(viewModel.items, id: \.self) { element in
                     NavigationLink(destination: {
                         CityDetailsView()
                             .navigationTitle("")
@@ -32,7 +40,7 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle("Weather", displayMode: .large)
-            .searchable(text: $searchText)
+            .searchable(text: $viewModel.searchText)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button("My city") {
@@ -40,6 +48,10 @@ struct ContentView: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            let requestManager = RequestManager()
+            requestManager.fetchRecommendations()
         }
     }
 }

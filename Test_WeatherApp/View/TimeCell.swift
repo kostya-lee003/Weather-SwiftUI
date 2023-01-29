@@ -8,20 +8,18 @@
 import SwiftUI
 
 struct TimeCell: View {
-    @State private var time = "12:00"
-    @State private var weatherType = ""
-    @State private var temperature = "24*"
+    @StateObject private var viewModel = ViewModel()
     var body: some View {
         VStack {
-            Text(time)
+            Text(viewModel.time)
                 .font(.callout)
                 .padding(.vertical, 18)
                 .padding(.horizontal, 14)
                 .foregroundColor(Color(.darkGray))
-            Image("rain")
+            Image(viewModel.weatherType)
                 .resizable()
                 .frame(width: 45, height: 45)
-            Text(temperature)
+            Text(viewModel.temperature)
                 .font(.title2)
                 .padding(.vertical, 18)
                 .foregroundColor(Color(.darkGray))

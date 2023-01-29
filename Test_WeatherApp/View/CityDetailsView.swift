@@ -9,18 +9,17 @@ import SwiftUI
 
 struct CityDetailsView: View {
     
-    var items = ["", "", "", ""]
-    @State private var title = "Stuttgart"
+    @StateObject private var viewModel = ViewModel()
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
                 HStack {
-                    Text(title)
+                    Text(viewModel.title)
                         .font(.largeTitle.bold())
                     Spacer()
                     
-                    Image("day_rain")
+                    Image(viewModel.weatherType)
                             .resizable()
                             .frame(width: 50, height: 50)
                             .foregroundColor(.blue)
@@ -29,7 +28,7 @@ struct CityDetailsView: View {
                     .font(.title2.weight(.medium))
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach(items, id: \.self) { element in
+                        ForEach(viewModel.items, id: \.self) { element in
                             TimeCell()
                                 .padding(.trailing, 10)
                         }
