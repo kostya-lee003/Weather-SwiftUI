@@ -13,68 +13,8 @@ public enum WeatherColor: String {
     case hot = "hot"
 }
 
-public class WeatherDataManager {
-    static func getColor(from t: Int) -> Color {
-        if t < 10 {
-            return .blue
-        } else if t >= 10 && t <= 25 {
-            return .orange
-        } else {
-            return .red
-        }
-    }
-}
-
-struct MainCityHeader: View {
-    @State private var showInTemperature = false
-    @State private var temperature = 111
-    @State private var weatherColor = WeatherColor.average
-    
-    var body: some View {
-        VStack {
-            HStack {
-                Text("Stuttgart")
-                    .font(.title)
-                    .fontWeight(.medium)
-                    .foregroundColor(.white)
-                Spacer()
-                Text("31*")
-                    .font(.title)
-                    .foregroundColor(.white)
-            }
-            Toggle("Show in Farenheit", isOn: $showInTemperature)
-                .foregroundColor(.white)
-        }
-        .listRowBackground(WeatherDataManager.getColor(from: temperature).opacity(0.75))
-    }
-}
-
-struct CityRow: View {
-    var name = ""
-    var temperature = 0
-    var date = Date()
-    
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Name")
-                    Text("Temperature")
-                }
-                Text("Date")
-            }
-            Spacer()
-            Button {
-                print("")
-            } label: {
-                Image(systemName: "doc.text.magnifyingglass").foregroundColor(.blue)
-            }
-        }
-    }
-}
-
 struct ContentView: View {
-    var items = ["Hello", "Hello", "Hello", "Hello"]
+    var items = ["Hello1", "Hello2", "Hello3", "Hello4"]
     
     @State private var searchText = ""
     
@@ -83,7 +23,12 @@ struct ContentView: View {
             List {
                 MainCityHeader()
                 ForEach(items, id: \.self) { element in
-                    CityRow()
+                    NavigationLink(destination: {
+                        CityDetailsView()
+                            .navigationTitle("")
+                    }, label: {
+                        CityRow()
+                    })
                 }
             }
             .navigationBarTitle("Weather", displayMode: .large)
