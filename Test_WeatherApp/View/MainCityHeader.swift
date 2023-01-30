@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct MainCityHeader: View {
-    @StateObject private var viewModel = ViewModel()
+    @ObservedObject var viewModel = CityRow.ViewModel()
+    
+    init(viewModel: CityRow.ViewModel = CityRow.ViewModel()) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack {
             HStack {
-                Text(viewModel.cityName)
+                Text(viewModel.name)
                     .font(.title)
                     .fontWeight(.medium)
                     .foregroundColor(.white)
                 Spacer()
-                Text(viewModel.temperature)
+                Text("\(viewModel.temperature)")
                     .font(.title)
                     .foregroundColor(.white)
             }

@@ -9,7 +9,7 @@ import SwiftUI
 
 extension CityDetailsView {
     @MainActor class ViewModel: ObservableObject {
-        @Published var items = [TimeCell.ViewModel]()
+        @Published var items = ["", "", "", "", ""]
         @Published var title = "Stuttgart"
         @Published var weatherType = "day_rain"
     }

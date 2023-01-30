@@ -8,16 +8,42 @@
 import SwiftUI
 
 extension ContentView {
-    @MainActor class ViewModel: ObservableObject {
+    class ViewModel: ObservableObject {
+        @Published var viewDidLoad = false
+        
+        @Published var mainItem = CityRow.ViewModel()
         @Published var items = [CityRow.ViewModel]()
         @Published var weatherColor = WeatherColor.average
-        @Published var temperature = 111
+        @Published var temperature = 0
         @Published var searchText = ""
         
         private let requestManager = RequestManager()
         
-        func getTemplateCities() -> [String] {
-            []
+        func getTemplateCities() {
+            requestManager.fetchMainRecommendation { [weak self] result in
+                switch result {
+                case .success(let response):
+                    self?.mainItem = Mapper.map(item: response)
+                case .failure(let error):
+                    fatalError(error.localizedDescription)
+                }
+            }
+//
+            requestManager.fetchRecommendations { [weak self] result in
+                switch result {
+                case .success(let success):
+                    self?.items = Mapper.map(items: success.list)
+                case .failure(let error):
+                    fatalError(error.localizedDescription)
+                }
+            }
+        }
+        
+        func setInitialItems() {
+            if viewDidLoad == false {
+                viewDidLoad = true
+                getTemplateCities()
+            }
         }
     }
 }

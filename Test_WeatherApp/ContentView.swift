@@ -14,13 +14,17 @@ public enum WeatherColor: String {
 }
 
 struct ContentView: View {
-    @StateObject private var viewModel = ViewModel()
+    @ObservedObject private var viewModel = ViewModel()
+    
+    init() {
+        UITableView.appearance().showsHorizontalScrollIndicator = false
+    }
     
     var body: some View {
         NavigationView {
             List {
                 ZStack {
-                    MainCityHeader()
+                    MainCityHeader(viewModel: viewModel.mainItem)
                     NavigationLink(destination: CityDetailsView()) {
                         EmptyView()
                     }
@@ -35,7 +39,7 @@ struct ContentView: View {
                         CityDetailsView()
                             .navigationTitle("")
                     }, label: {
-                        CityRow()
+                        CityRow(viewModel: element)
                     })
                 }
             }
@@ -50,8 +54,7 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            let requestManager = RequestManager()
-            requestManager.fetchRecommendations()
+            viewModel.setInitialItems()
         }
     }
 }

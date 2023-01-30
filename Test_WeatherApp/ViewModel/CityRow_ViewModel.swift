@@ -11,14 +11,22 @@ import UIKit
 import ObjectiveC
 
 extension CityRow {
-    @MainActor class ViewModel: ObservableObject {
+    class ViewModel: ObservableObject {
         private let serialNumber: String = UUID().uuidString
         
         @Published var name = "City"
-        @Published var temperature = "34*"
+        @Published var temperature = 0
         @Published var date = Date()
         
+        @Published var showInTemperature = false
+        
         private let dateManager = DateManager()
+        
+        init(name: String = "City", temperature: Int = 0, date: Date = Date()) {
+            self.name = name
+            self.temperature = temperature
+            self.date = date
+        }
         
         func getConvertedDate(from date: Date) -> String {
             return "Date"
