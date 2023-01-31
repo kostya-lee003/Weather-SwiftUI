@@ -13,8 +13,7 @@ struct TimeCell: View {
         VStack {
             Text(viewModel.time)
                 .font(.callout)
-                .padding(.vertical, 18)
-                .padding(.horizontal, 14)
+                .padding(.all, 18)
                 .foregroundColor(Color(.darkGray))
             Image(viewModel.weatherType)
                 .resizable()

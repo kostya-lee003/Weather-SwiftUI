@@ -11,6 +11,7 @@ enum Endpoint {
     case mainRecommendation
     case recommendations
     case search(query: String)
+    case hourlyForecast(query: String)
 }
 
 extension Endpoint {
@@ -22,6 +23,8 @@ extension Endpoint {
             return .recommendations
         case .search(let query):
             return .search(city: query)
+        case .hourlyForecast(let query):
+            return .hourlyForecast(city: query)
         }
     }
 }

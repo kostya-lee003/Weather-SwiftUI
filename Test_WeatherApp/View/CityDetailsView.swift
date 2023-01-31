@@ -40,5 +40,8 @@ struct CityDetailsView: View {
             .navigationBarHidden(true)
             .navigationBarTitleDisplayMode(.inline)
         }
+        .onAppear {
+            viewModel.getHourlyForecast()
+        }
     }
 }

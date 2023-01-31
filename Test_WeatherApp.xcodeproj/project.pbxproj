@@ -32,6 +32,7 @@
 		C8AC3A9F29841DDE00FE4EA1 /* CityRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC3A9E29841DDE00FE4EA1 /* CityRow.swift */; };
 		C8AC3AA129841DF600FE4EA1 /* MainCityHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC3AA029841DF600FE4EA1 /* MainCityHeader.swift */; };
 		C8AC3AA329841E2600FE4EA1 /* WeatherDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC3AA229841E2600FE4EA1 /* WeatherDataManager.swift */; };
+		C8D911EB29883F1B006EC92F /* ResponseHourly.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D911EA29883F1B006EC92F /* ResponseHourly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		C8AC3A9E29841DDE00FE4EA1 /* CityRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRow.swift; sourceTree = "<group>"; };
 		C8AC3AA029841DF600FE4EA1 /* MainCityHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCityHeader.swift; sourceTree = "<group>"; };
 		C8AC3AA229841E2600FE4EA1 /* WeatherDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataManager.swift; sourceTree = "<group>"; };
+		C8D911EA29883F1B006EC92F /* ResponseHourly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseHourly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				C82D02B029870EE0005AFD9B /* Response.swift */,
+				C8D911EA29883F1B006EC92F /* ResponseHourly.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				C82D02842985A2F3005AFD9B /* TimeCell.swift in Sources */,
 				C8265AE72983A993002F9F2E /* ContentView.swift in Sources */,
 				C82D02C2298780F0005AFD9B /* ObjectSavableError.swift in Sources */,
+				C8D911EB29883F1B006EC92F /* ResponseHourly.swift in Sources */,
 				C82D029729866731005AFD9B /* TimeCell_ViewModel.swift in Sources */,
 				C8265AE52983A993002F9F2E /* Test_WeatherAppApp.swift in Sources */,
 				C82D02A82986D4E5005AFD9B /* Endpoint.swift in Sources */,

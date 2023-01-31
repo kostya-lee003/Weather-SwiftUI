@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 public class RequestManager {
-    func fetchMainRecommendation(using session: URLSession = .shared, completion: @escaping (Result<CityModel, Error>) -> Void) {
+    func requestMainRecommendation(using session: URLSession = .shared, completion: @escaping (Result<CityModel, Error>) -> Void) {
         let endpoint = Endpoint.mainRecommendation
         
         session.request(endpoint) { data, response, error in
@@ -27,7 +27,7 @@ public class RequestManager {
         }
     }
     
-    func fetchRecommendations(using session: URLSession = .shared, completion: @escaping (Result<Response, Error>) -> Void) {
+    func requestRecommendations(using session: URLSession = .shared, completion: @escaping (Result<Response, Error>) -> Void) {
         let endpoint = Endpoint.recommendations
         
         session.request(endpoint) { data, response, error in
@@ -57,5 +57,21 @@ public class RequestManager {
                 fatalError("decoding error")
             }
         }
+    }
+    
+    func requestHourlyForecast(for city: String, using session: URLSession = .shared, completion: @escaping (Result<Welcome, Error>) -> Void) {
+        let endpoint = Endpoint.hourlyForecast(query: city)
+        
+//        session.request(endpoint) { data, response, error in
+//            guard let data = data, error == nil else { return }
+//            do {
+//                let decodedData = try JSONDecoder().decode(Welcome.self, from: data)
+//                DispatchQueue.main.async {
+//                    completion(.success(decodedData))
+//                }
+//            } catch {
+//                fatalError("decoding error")
+//            }
+//        }
     }
 }

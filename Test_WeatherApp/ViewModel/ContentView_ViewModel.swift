@@ -20,7 +20,7 @@ extension ContentView {
         private let requestManager = RequestManager()
         
         func getTemplateCities() {
-            requestManager.fetchMainRecommendation { [weak self] result in
+            requestManager.requestMainRecommendation { [weak self] result in
                 switch result {
                 case .success(let response):
                     self?.mainItem = Mapper.map(item: response)
@@ -29,7 +29,7 @@ extension ContentView {
                 }
             }
 //
-            requestManager.fetchRecommendations { [weak self] result in
+            requestManager.requestRecommendations { [weak self] result in
                 switch result {
                 case .success(let success):
                     self?.items = Mapper.map(items: success.list)
