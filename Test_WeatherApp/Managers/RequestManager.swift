@@ -45,14 +45,16 @@ public class RequestManager {
         }
     }
     
-    func search(query: String, using session: URLSession = .shared) {
+    func search(query: String, using session: URLSession = .shared, completion: @escaping (Result<CityModel, Error>) -> Void) {
         let endpoint = Endpoint.search(query: query)
         
         session.request(endpoint) { data, response, error in
             guard let data = data, error == nil else { return }
             do {
                 let decodedData = try JSONDecoder().decode(CityModel.self, from: data)
-                print(decodedData)
+                DispatchQueue.main.async {
+                    completion(.success(decodedData))
+                }
             } catch {
                 fatalError("decoding error")
             }

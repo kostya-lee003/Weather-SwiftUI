@@ -48,7 +48,12 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button("My city") {
-                        print("My city")
+                        viewModel.getMyCity()
+                    }
+                    .alert("Could not find your city", isPresented: $viewModel.showingAlert) {
+                        Button("OK", role: .cancel) {
+                            viewModel.showingAlert = false
+                        }
                     }
                 }
             }
